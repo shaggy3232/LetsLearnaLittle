@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  LetsLearnALittle
+//  WhatDoIEat
 //
-//  Created by Shaggy Bremnath on 2020-06-02.
+//  Created by Shaggy Bremnath on 2020-06-09.
 //  Copyright © 2020 Shaggy Bremnath. All rights reserved.
 //
 
