@@ -14,6 +14,7 @@
 		E73D8AA8248FF127000CC0D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73D8AA7248FF127000CC0D2 /* Preview Assets.xcassets */; };
 		E73D8AAB248FF127000CC0D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73D8AA9248FF127000CC0D2 /* LaunchScreen.storyboard */; };
 		E73D8AB4248FF1C5000CC0D2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E73D8AB3248FF1C5000CC0D2 /* SDWebImageSwiftUI */; };
+		E73D8AB824915470000CC0D2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73D8AB724915470000CC0D2 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		E73D8AA7248FF127000CC0D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E73D8AAA248FF127000CC0D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E73D8AAC248FF127000CC0D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E73D8AB724915470000CC0D2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,8 @@
 		E73D8A9D248FF124000CC0D2 /* WhatDoIEat */ = {
 			isa = PBXGroup;
 			children = (
+				E73D8AB624915454000CC0D2 /* Managers */,
+				E73D8AB524915333000CC0D2 /* Views */,
 				E73D8A9E248FF124000CC0D2 /* AppDelegate.swift */,
 				E73D8AA0248FF124000CC0D2 /* SceneDelegate.swift */,
 				E73D8AA2248FF124000CC0D2 /* ContentView.swift */,
@@ -75,6 +79,21 @@
 				E73D8AA7248FF127000CC0D2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E73D8AB524915333000CC0D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E73D8AB624915454000CC0D2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E73D8AB724915470000CC0D2 /* LocationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E73D8AB824915470000CC0D2 /* LocationManager.swift in Sources */,
 				E73D8A9F248FF124000CC0D2 /* AppDelegate.swift in Sources */,
 				E73D8AA1248FF124000CC0D2 /* SceneDelegate.swift in Sources */,
 				E73D8AA3248FF124000CC0D2 /* ContentView.swift in Sources */,
