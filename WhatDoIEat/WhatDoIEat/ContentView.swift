@@ -33,7 +33,9 @@ struct ContentView: View {
                 
                 VStack{
                      Text("What do you want to eat?")
-                    Text("\(coordinate.latitude), \(coordinate.longitude)")
+                    Text("\(coordinate.latitude), \(coordinate.longitude)").onAppear{
+                    self.obs.loadwithcoordinates(coordinate: coordinate)
+                    }
                     List(obs.Rests){
                         i in
                         Text(i.name)
@@ -62,17 +64,18 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 class obserever : ObservableObject{
-    @ObservedObject var locationManager = LocationManager()
+
     
     @Published var Rests = [r]()
     
+    init() {
+     
+    }
     
-    
-    init(){
+    func load(){
         
-        let coordinate = self.locationManager.location != nil ?
-                  self.locationManager.location!.coordinate :CLLocationCoordinate2D()
-        let url1 = "https://developers.zomato.com/api/v2.1/geocode?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)"
+  
+        let url1 = "https://developers.zomato.com/api/v2.1/geocode?lat=0.00&lon=0.00"
         let api = "7f99f4022b4612cf1711ebfd5198d544"
         
         let url = URL(string: url1)
@@ -88,7 +91,7 @@ class obserever : ObservableObject{
             
             do{
                 let fetch = try JSONDecoder().decode(Type.self, from: data!)
-                print(coordinate.latitude)
+                
                 
                 for i in fetch.nearby_restaurants{
                     
@@ -106,6 +109,44 @@ class obserever : ObservableObject{
         }.resume()
         
     }
+    
+       func loadwithcoordinates(coordinate: CLLocationCoordinate2D){
+           
+     
+           let url1 = "https://developers.zomato.com/api/v2.1/geocode?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)"
+           let api = "7f99f4022b4612cf1711ebfd5198d544"
+           
+           let url = URL(string: url1)
+           var request = URLRequest(url: url!)
+           
+           
+           request.addValue("application/json", forHTTPHeaderField: "Accept")
+           request.addValue( api , forHTTPHeaderField: "user-key")
+           request.httpMethod = "GET"
+           
+           let sess = URLSession(configuration: .default)
+           sess.dataTask(with: request){ (data, _, _) in
+               
+               do{
+                   let fetch = try JSONDecoder().decode(Type.self, from: data!)
+                   print(coordinate.latitude)
+                   
+                   for i in fetch.nearby_restaurants{
+                       
+                       DispatchQueue.main.async {
+                                   self.Rests.append(r(id: i.restaurant.id, name: i.restaurant.name, image: i.restaurant.thumb, rating: i.restaurant.user_rating.aggregate_rating, webUrl: i.restaurant.url))
+                       }
+               
+                   }
+                   
+               }
+               catch{
+                   print(error.localizedDescription)
+               }
+               
+           }.resume()
+           
+       }
     
 }
 
