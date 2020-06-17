@@ -56,6 +56,9 @@ struct ContentView: View {
                     Spacer()
                         
                     Text("\(restaraunt)")
+                        .foregroundColor(.white)
+                        .bold()
+                        
                         
                     Spacer()
                         
