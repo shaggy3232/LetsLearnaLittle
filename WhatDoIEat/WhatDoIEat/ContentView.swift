@@ -15,6 +15,10 @@ struct ContentView: View {
     @ObservedObject var obs = obserever()
     @ObservedObject var locationManager = LocationManager()
     @State private var restaraunt = " "
+    @State var rest =  r(id: " ", name: " ", image: "", rating: "", webUrl: "")
+    @State private var showRestaraunt = false
+      @State private var showPickARestarauntButton = false
+    @State private var buttonAnimationAmmount: CGFloat = 1
 
     var body: some View {
         
@@ -26,38 +30,49 @@ struct ContentView: View {
         
         return    ZStack{
                 
-                Rectangle()
-                    .foregroundColor(Color(red: 0/255, green: 0/255, blue: 255/255))
-                    .edgesIgnoringSafeArea(.all)
+              
                 
                 VStack{
                     Spacer()
         
                     Text("Feeling Hungry?")
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .bold()
                         .onAppear{
-                        self.obs.loadwithcoordinates(coordinate: coordinate)}
+                           
+                        }
                     
                     Spacer()
                     
-                    Button(action: {
+                    Button("Generate list") {
+                                        self.obs.Rests.removeAll()
+                                         self.obs.loadwithcoordinates(coordinate: coordinate)
+                        self.showPickARestarauntButton = true
+                                     }
+                      Spacer()
+                    if showPickARestarauntButton{
+                    Button("What do i eat?") {
+                        
                         self.restaraunt = self.obs.Rests[Int.random(in: 0...self.obs.Rests.count - 1)].name
-                    })  {
-                        Text("what should I eat")
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding(50)
-                            .background(Color.yellow)
-                            .cornerRadius(360)
-                            
+                        self.rest = self.obs.Rests[Int.random(in: 0...self.obs.Rests.count - 1)]
+                        self.showRestaraunt.toggle()
                     }
-                    
+                   
+                    }
                     Spacer()
                         
-                    Text("\(restaraunt)")
-                        .foregroundColor(.white)
-                        .bold()
+                 
+                       
+                    if showRestaraunt {
+                        CardView(rName: $rest.name, rRating: $rest.rating, rWeb: $rest.webUrl, rImage: $rest.image)
+                        
+                    
+                    }
+                    
+                    if !showRestaraunt{
+                        Spacer()
+                        
+                    }
                         
                         
                     Spacer()
