@@ -48,7 +48,10 @@ struct ContentView: View {
                                         self.obs.Rests.removeAll()
                                          self.obs.loadwithcoordinates(coordinate: coordinate)
                         self.showPickARestarauntButton = true
-                                     }
+                    }.background(Color.blue)
+                        .cornerRadius(20)
+                    
+                    
                       Spacer()
                     if showPickARestarauntButton{
                     Button("What do i eat?") {
@@ -56,7 +59,8 @@ struct ContentView: View {
                         self.restaraunt = self.obs.Rests[Int.random(in: 0...self.obs.Rests.count - 1)].name
                         self.rest = self.obs.Rests[Int.random(in: 0...self.obs.Rests.count - 1)]
                         self.showRestaraunt.toggle()
-                    }
+                    }.background(Color.blue)
+                    .cornerRadius(20)
                    
                     }
                     Spacer()
